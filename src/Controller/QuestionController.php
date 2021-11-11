@@ -7,19 +7,25 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Twig\Environment;
 
 class QuestionController extends AbstractController
 {
     /**
-     * @Route("/")
+     * @Route("/", name="app_homepage")
      */
-    public function homepage()
+    public function homepage(Environment $twigEnvironment)
     {
-        return new Response('What a bewitching controller we have conjured!');
+        /*
+        $html = $twigEnvironment->render('question/homepage.html.twig');
+
+        return new Response($html);
+        */
+        return $this->render('question/homepage.html.twig');
      }
 
     /**
-     * @Route("/questions/{slug}")
+     * @Route("/questions/{slug}", name="app_question_show")
      */
     public function show($slug)
     {
